@@ -3,16 +3,13 @@ import { Request, Response } from 'express';
 import * as yup from 'yup';
 // import User from '../../models/User';
 import { validation } from '../../shared/middlewares';
+import { IUser } from '../../models/User';
 
 interface IParamProps {
   id: number;
 }
 
-interface IBodyProps {
-  name: string;
-  email: string;
-  password: string;
-}
+interface IBodyProps extends Omit<IUser, 'idUser'>{}
 
 export const updateByPkValidation = validation((getSchema) => ({
   body: getSchema<IBodyProps>(

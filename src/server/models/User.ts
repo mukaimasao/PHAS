@@ -1,13 +1,18 @@
 import { DataTypes, Model } from 'sequelize';
-// import { sequelize } from "../config/config";
+import sequelize from '../database/sequelize';
 
-class User extends Model {
-  public idUser!: number;
-  public name!: string;
-  public email!: string;
-  public password!: string;
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
+export interface IUser {
+  idUser: number;
+  name: string;
+  email: string;
+  password: string;
+}
+
+class User extends Model implements IUser {
+  idUser!: number;
+  name!: string;
+  email!: string;
+  password!: string;
 }
 
 User.init(
@@ -38,5 +43,3 @@ User.init(
 );
 
 User.sync();
-
-export default User;
